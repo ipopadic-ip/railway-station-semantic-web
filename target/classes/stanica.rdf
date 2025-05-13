@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:voz="http://www.singidunum.ac.rs/voz#">
+
+    <!-- ============================= -->
+    <!-- Definisanje Klasa -->
+    <!-- ============================= -->
+
+    <!-- Apstraktna klasa Zaposleni -->
+    <rdf:Description rdf:about="http://www.singidunum.ac.rs/voz#Zaposleni">
+        <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    </rdf:Description>
+
+    <!-- StanicniRadnik je podklasa Zaposleni -->
+    <rdf:Description rdf:about="http://www.singidunum.ac.rs/voz#StanicniRadnik">
+        <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+        <rdfs:subClassOf rdf:resource="http://www.singidunum.ac.rs/voz#Zaposleni"/>
+    </rdf:Description>
+
+    <!-- Masinovodja je podklasa Zaposleni -->
+    <rdf:Description rdf:about="http://www.singidunum.ac.rs/voz#Masinovodja">
+        <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+        <rdfs:subClassOf rdf:resource="http://www.singidunum.ac.rs/voz#Zaposleni"/>
+    </rdf:Description>
+
+    <!-- Voz -->
+    <rdf:Description rdf:about="http://www.singidunum.ac.rs/voz#Voz">
+        <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    </rdf:Description>
+
+    <!-- Vagon -->
+    <rdf:Description rdf:about="http://www.singidunum.ac.rs/voz#Vagon">
+        <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    </rdf:Description>
+
+    <!-- Lokomotiva je podklasa Vagona -->
+    <rdf:Description rdf:about="http://www.singidunum.ac.rs/voz#Lokomotiva">
+        <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+        <rdfs:subClassOf rdf:resource="http://www.singidunum.ac.rs/voz#Vagon"/>
+    </rdf:Description>
+
+    <!-- PutnickiVagon je podklasa Vagona -->
+    <rdf:Description rdf:about="http://www.singidunum.ac.rs/voz#PutnickiVagon">
+        <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+        <rdfs:subClassOf rdf:resource="http://www.singidunum.ac.rs/voz#Vagon"/>
+    </rdf:Description>
+
+    <!-- ============================= -->
+    <!-- Definisanje Svojstava -->
+    <!-- ============================= -->
+
+    <!-- upravlja (Masinovodja → Voz) -->
+    <rdf:Property rdf:about="http://www.singidunum.ac.rs/voz#upravlja">
+        <rdfs:domain rdf:resource="http://www.singidunum.ac.rs/voz#Masinovodja"/>
+        <rdfs:range rdf:resource="http://www.singidunum.ac.rs/voz#Voz"/>
+    </rdf:Property>
+
+    <!-- imaIme (Zaposleni → string) -->
+    <rdf:Property rdf:about="http://www.singidunum.ac.rs/voz#imaIme">
+        <rdfs:domain rdf:resource="http://www.singidunum.ac.rs/voz#Zaposleni"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </rdf:Property>
+
+    <!-- imaPlatu (Zaposleni → int) -->
+    <rdf:Property rdf:about="http://www.singidunum.ac.rs/voz#imaPlatu">
+        <rdfs:domain rdf:resource="http://www.singidunum.ac.rs/voz#Zaposleni"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </rdf:Property>
+
+    <!-- imaLokomotivu (Voz → Lokomotiva) -->
+    <rdf:Property rdf:about="http://www.singidunum.ac.rs/voz#imaLokomotivu">
+        <rdfs:domain rdf:resource="http://www.singidunum.ac.rs/voz#Voz"/>
+        <rdfs:range rdf:resource="http://www.singidunum.ac.rs/voz#Lokomotiva"/>
+    </rdf:Property>
+
+    <!-- imaSledeciVagon (Vagon → Vagon) -->
+    <rdf:Property rdf:about="http://www.singidunum.ac.rs/voz#imaSledeciVagon">
+        <rdfs:domain rdf:resource="http://www.singidunum.ac.rs/voz#Vagon"/>
+        <rdfs:range rdf:resource="http://www.singidunum.ac.rs/voz#Vagon"/>
+    </rdf:Property>
+
+    <!-- imaBrojSedista (PutnickiVagon → int) -->
+    <rdf:Property rdf:about="http://www.singidunum.ac.rs/voz#imaBrojSedista">
+        <rdfs:domain rdf:resource="http://www.singidunum.ac.rs/voz#PutnickiVagon"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </rdf:Property>
+
+    <!-- ============================= -->
+    <!-- Kreiranje nekoliko instanci -->
+    <!-- ============================= -->
+
+    <!-- Masinovodja: Marko -->
+    <voz:Masinovodja rdf:about="http://www.singidunum.ac.rs/voz#marko123">
+        <voz:imaIme>Marko</voz:imaIme>
+        <voz:imaPlatu rdf:datatype="xsd:int">500</voz:imaPlatu>
+        <voz:upravlja rdf:resource="http://www.singidunum.ac.rs/voz#vozA"/>
+    </voz:Masinovodja>
+    
+    <voz:StanicniRadnik rdf:about="http://www.singidunum.ac.rs/voz#petar456">
+    	<voz:imaIme>Petar</voz:imaIme>
+    	<voz:imaPlatu rdf:datatype="xsd:int">600</voz:imaPlatu>
+	</voz:StanicniRadnik>
+
+
+    <!-- Voz -->
+    <voz:Voz rdf:about="http://www.singidunum.ac.rs/voz#vozA">
+        <voz:imaLokomotivu rdf:resource="http://www.singidunum.ac.rs/voz#lok1"/>
+    </voz:Voz>
+
+    <!-- Lokomotiva -->
+    <voz:Lokomotiva rdf:about="http://www.singidunum.ac.rs/voz#lok1">
+        <voz:imaSledeciVagon rdf:resource="http://www.singidunum.ac.rs/voz#vag1"/>
+    </voz:Lokomotiva>
+
+    <!-- PutnickiVagon 1 -->
+    <voz:PutnickiVagon rdf:about="http://www.singidunum.ac.rs/voz#vag1">
+        <voz:imaBrojSedista rdf:datatype="xsd:int">30</voz:imaBrojSedista>
+        <voz:imaSledeciVagon rdf:resource="http://www.singidunum.ac.rs/voz#vag2"/>
+    </voz:PutnickiVagon>
+
+    <!-- PutnickiVagon 2 -->
+    <voz:PutnickiVagon rdf:about="http://www.singidunum.ac.rs/voz#vag2">
+        <voz:imaBrojSedista rdf:datatype="xsd:int">15</voz:imaBrojSedista>
+    </voz:PutnickiVagon>
+
+</rdf:RDF>
