@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:hsp="http://www.singidunum.ac.rs/hospital#">
+
+    <!-- ============================= -->
+    <!-- Definisanje klasa -->
+    <!-- ============================= -->
+
+    <rdf:Description rdf:about="http://www.singidunum.ac.rs/hospital#Osoba">
+        <rdf:type rdf:resource="rdfs:Class"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://www.singidunum.ac.rs/hospital#Doktor">
+        <rdf:type rdf:resource="rdfs:Class"/>
+        <rdfs:subClassOf rdf:resource="http://www.singidunum.ac.rs/hospital#Osoba"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://www.singidunum.ac.rs/hospital#Pacijent">
+        <rdf:type rdf:resource="rdfs:Class"/>
+        <rdfs:subClassOf rdf:resource="http://www.singidunum.ac.rs/hospital#Osoba"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://www.singidunum.ac.rs/hospital#Hirurg">
+        <rdf:type rdf:resource="rdfs:Class"/>
+        <rdfs:subClassOf rdf:resource="http://www.singidunum.ac.rs/hospital#Doktor"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://www.singidunum.ac.rs/hospital#Dijagnoza">
+        <rdf:type rdf:resource="rdfs:Class"/>
+    </rdf:Description>
+
+    <!-- Specijalizacija nije klasa u opisu, ali je potrebna -->
+    <rdf:Description rdf:about="http://www.singidunum.ac.rs/hospital#Specijalizacija">
+        <rdf:type rdf:resource="rdfs:Class"/>
+    </rdf:Description>
+
+    <!-- ============================= -->
+    <!-- Definisanje svojstava -->
+    <!-- ============================= -->
+
+    <rdf:Property rdf:about="http://www.singidunum.ac.rs/hospital#imaImeIPrezime">
+        <rdfs:domain rdf:resource="http://www.singidunum.ac.rs/hospital#Osoba"/>
+        <rdfs:range rdf:resource="xsd:string"/>
+    </rdf:Property>
+
+    <rdf:Property rdf:about="http://www.singidunum.ac.rs/hospital#imaSpecijalizaciju">
+        <rdfs:domain rdf:resource="http://www.singidunum.ac.rs/hospital#Doktor"/>
+        <rdfs:range rdf:resource="http://www.singidunum.ac.rs/hospital#Specijalizacija"/>
+    </rdf:Property>
+
+    <rdf:Property rdf:about="http://www.singidunum.ac.rs/hospital#imaDijagnozu">
+        <rdfs:domain rdf:resource="http://www.singidunum.ac.rs/hospital#Osoba"/>
+        <rdfs:range rdf:resource="http://www.singidunum.ac.rs/hospital#Dijagnoza"/>
+    </rdf:Property>
+
+    <rdf:Property rdf:about="http://www.singidunum.ac.rs/hospital#imaPlatu">
+        <rdfs:domain rdf:resource="http://www.singidunum.ac.rs/hospital#Doktor"/>
+        <rdfs:range rdf:resource="xsd:int"/>
+    </rdf:Property>
+
+    <!-- ============================= -->
+    <!-- Definisanje instanci -->
+    <!-- ============================= -->
+
+    <!-- Dijagnoze -->
+    <hsp:Dijagnoza rdf:about="http://www.singidunum.ac.rs/hospital#anosmija"/>
+    <hsp:Dijagnoza rdf:about="http://www.singidunum.ac.rs/hospital#fraktura_nosa"/>
+    <hsp:Dijagnoza rdf:about="http://www.singidunum.ac.rs/hospital#prehlada"/>
+
+    <!-- Specijalizacije -->
+    <hsp:Specijalizacija rdf:about="http://www.singidunum.ac.rs/hospital#Ortoped"/>
+    <hsp:Specijalizacija rdf:about="http://www.singidunum.ac.rs/hospital#Rekonstrukcija"/>
+    <hsp:Specijalizacija rdf:about="http://www.singidunum.ac.rs/hospital#Neurohirurgija"/>
+
+    <!-- pacijent155 -->
+    <hsp:Osoba rdf:about="http://www.singidunum.ac.rs/hospital#pacijent155">
+        <hsp:imaImeIPrezime>Marko Markovic</hsp:imaImeIPrezime>
+        <hsp:imaDijagnozu rdf:resource="http://www.singidunum.ac.rs/hospital#anosmija"/>
+        <hsp:imaDijagnozu rdf:resource="http://www.singidunum.ac.rs/hospital#fraktura_nosa"/>
+    </hsp:Osoba>
+
+    <!-- pacijent65 -->
+    <hsp:Osoba rdf:about="http://www.singidunum.ac.rs/hospital#pacijent65">
+        <hsp:imaImeIPrezime>Dejan Pavlovic</hsp:imaImeIPrezime>
+        <hsp:imaDijagnozu rdf:resource="http://www.singidunum.ac.rs/hospital#anosmija"/>
+        <hsp:imaDijagnozu rdf:resource="http://www.singidunum.ac.rs/hospital#prehlada"/>
+    </hsp:Osoba>
+
+    <!-- doktor15 -->
+    <hsp:Doktor rdf:about="http://www.singidunum.ac.rs/hospital#doktor15">
+        <hsp:imaImeIPrezime>Petar Petrovic</hsp:imaImeIPrezime>
+        <hsp:imaSpecijalizaciju rdf:resource="http://www.singidunum.ac.rs/hospital#Ortoped"/>
+        <hsp:imaPlatu rdf:datatype="xsd:int">500</hsp:imaPlatu>
+    </hsp:Doktor>
+
+    <!-- hirurg5 -->
+    <hsp:Hirurg rdf:about="http://www.singidunum.ac.rs/hospital#hirurg5">
+        <hsp:imaImeIPrezime>Stevan Stevanovic</hsp:imaImeIPrezime>
+        <hsp:imaSpecijalizaciju rdf:resource="http://www.singidunum.ac.rs/hospital#Rekonstrukcija"/>
+        <hsp:imaSpecijalizaciju rdf:resource="http://www.singidunum.ac.rs/hospital#Neurohirurgija"/>
+        <hsp:imaPlatu rdf:datatype="xsd:int">800</hsp:imaPlatu>
+    </hsp:Hirurg>
+
+</rdf:RDF>
